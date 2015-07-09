@@ -1,7 +1,7 @@
 from collections import defaultdict
 from nio.common.signal.base import Signal
 from nio.util.support.block_test_case import NIOBlockTestCase
-from ..example_block import Example
+from ..serial_write_block import SerialWrite
 
 
 class TestExample(NIOBlockTestCase):
@@ -18,7 +18,7 @@ class TestExample(NIOBlockTestCase):
         pass
 
     def test_process_signals(self):
-        blk = Example()
+        blk = SerialWrite()
         self.configure_block(blk, {})
         blk.start()
         blk.process_signals([Signal()])

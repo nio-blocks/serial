@@ -1,14 +1,17 @@
 from nio.common.block.base import Block
 from nio.common.discovery import Discoverable, DiscoverableType
-from nio.metadata.properties import VersionProperty
+from nio.metadata.properties import VersionProperty, StringProperty, \
+    IntProperty
 
 
 @Discoverable(DiscoverableType.block)
-class Example(Block):
+class SerialRead(Block):
 
-    """ This is the Example block. Put a brief description here. """
+    """ Read from a serial port """
 
     version = VersionProperty('0.1.0')
+    port = StringProperty(title='Port', default='/dev/ttyS0')
+    baudrate = IntProperty(title='Baud Rate', default=9600)
 
     def process_signals(self, signals, input_id='default'):
         for signal in signals:
