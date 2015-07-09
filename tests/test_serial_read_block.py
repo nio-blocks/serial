@@ -1,10 +1,11 @@
+from unittest.mock import patch
 from collections import defaultdict
 from nio.common.signal.base import Signal
 from nio.util.support.block_test_case import NIOBlockTestCase
 from ..serial_read_block import SerialRead
 
 
-class TestExample(NIOBlockTestCase):
+class TestSerialRead(NIOBlockTestCase):
 
     def setUp(self):
         super().setUp()
@@ -14,14 +15,18 @@ class TestExample(NIOBlockTestCase):
     def signals_notified(self, signals, output_id='default'):
         self.last_notified[output_id].extend(signals)
 
-    def test_pass(self):
-        pass
-
-    def test_process_signals(self):
+    def test_default_read(self):
         blk = SerialRead()
-        self.configure_block(blk, {})
+        with patch('serial.Serial'):
+            self.configure_block(blk, {})
+        blk.ser.read.return_value = 'sample response'
         blk.start()
-        blk.process_signals([Signal()])
+        blk.process_signals([Signal({'my': 'signal'})])
         blk.stop()
+        blk.ser.read.assert_called_once_with(16)
         self.assert_num_signals_notified(1)
-        self.assertDictEqual(self.last_notified['default'][0].to_dict(), {})
+        self.assertDictEqual(self.last_notified['default'][0].to_dict(),
+                             {
+                                 'my': 'signal',
+                                 'serial_read': 'sample response'
+                             })

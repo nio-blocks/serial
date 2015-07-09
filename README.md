@@ -7,7 +7,9 @@ Properties
 --------------
 
 -   port (str): Serial port to read from
--   badurate (int): Baud rate of serial port
+-   baudrate (int): Baud rate of serial port
+-   timeout (int): Read timeout
+-   num_bytes (int): Number of bytes to read
 
 Dependencies
 ----------------
@@ -24,12 +26,12 @@ Any list of signals.
 
 Output
 ---------
-Same list of signals as input.
+Same list of signals as input with new attribute *serial_read*.
 
 -------------------------------------------------------------------------------
 
 SerialWrite
-==========
+===========
 
 Write to a serial port
 
@@ -37,7 +39,8 @@ Properties
 --------------
 
 -   port (str): Serial port to read from
--   badurate (int): Baud rate of serial port
+-   baudrate (int): Baud rate of serial port
+-   write_data (exp): Data to write to serial port
 
 Dependencies
 ----------------
