@@ -8,7 +8,7 @@ Properties
 
 -   port (str): Serial port to read from
 -   baudrate (int): Baud rate of serial port
--   timeout (int): Read timeout
+-   timeout (int): Read timeout in seconds
 -   num_bytes (int): Number of bytes to read
 
 Dependencies

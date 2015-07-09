@@ -13,7 +13,7 @@ class SerialRead(Block):
     version = VersionProperty('0.1.0')
     port = StringProperty(title='Port', default='/dev/ttyS0')
     baudrate = IntProperty(title='Baud Rate', default=9600)
-    timeout = IntProperty(title='Number of Bytes to Read', default=16)
+    timeout = IntProperty(title='Timeout', default=1)
     num_bytes = IntProperty(title='Number of Bytes to Read', default=16)
 
     def __init__(self):
