@@ -30,10 +30,15 @@ class SerialWrite(Block):
         self.notify_signals(signals, output_id='default')
 
     def _write(self, signal):
+        data = None
         try:
             data = self.write_data(signal)
         except:
             self._logger.exception('Failed to evaluate write_data')
         if data:
-            self.ser.write(data)
-            self.ser.flush()
+            try:
+                self.ser.write(data)
+            except serial.SerialTimeoutException:
+                self._logger.error('Failed writing to serial port')
+            finally:
+                self.ser.flush()
