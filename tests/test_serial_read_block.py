@@ -19,11 +19,11 @@ class TestSerialRead(NIOBlockTestCase):
         blk = SerialRead()
         with patch('serial.Serial'):
             self.configure_block(blk, {})
-        blk.ser.read.return_value = 'sample response'
+        blk._serial.read.return_value = 'sample response'
         blk.start()
         blk.process_signals([Signal({'my': 'signal'})])
         blk.stop()
-        blk.ser.read.assert_called_once_with(16)
+        blk._serial.read.assert_called_once_with(16)
         self.assert_num_signals_notified(1)
         self.assertDictEqual(self.last_notified['default'][0].to_dict(),
                              {

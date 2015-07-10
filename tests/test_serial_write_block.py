@@ -23,8 +23,8 @@ class TestSerialWrite(NIOBlockTestCase):
         blk.start()
         blk.process_signals([Signal({'data': 'd'})])
         blk.stop()
-        blk.ser.write.assert_called_once_with('d')
-        blk.ser.flush.assert_called_once_with()
+        blk._serial.write.assert_called_once_with('d')
+        blk._serial.flush.assert_called_once_with()
         self.assert_num_signals_notified(1)
         self.assertDictEqual(self.last_notified['default'][0].to_dict(),
                              {
@@ -35,12 +35,12 @@ class TestSerialWrite(NIOBlockTestCase):
         blk = SerialWrite()
         with patch('serial.Serial'):
             self.configure_block(blk, {})
-        blk.ser.write.side_effect = SerialTimeoutException()
+        blk._serial.write.side_effect = SerialTimeoutException()
         blk.start()
         blk.process_signals([Signal({'data': 'd'})])
         blk.stop()
-        blk.ser.write.assert_called_once_with('d')
-        blk.ser.flush.assert_called_once_with()
+        blk._serial.write.assert_called_once_with('d')
+        blk._serial.flush.assert_called_once_with()
         self.assert_num_signals_notified(1)
         self.assertDictEqual(self.last_notified['default'][0].to_dict(),
                              {
@@ -54,8 +54,8 @@ class TestSerialWrite(NIOBlockTestCase):
         blk.start()
         blk.process_signals([Signal({'data': 'd'})])
         blk.stop()
-        self.assertEqual(0, blk.ser.write.call_count)
-        self.assertEqual(0, blk.ser.flush.call_count)
+        self.assertEqual(0, blk._serial.write.call_count)
+        self.assertEqual(0, blk._serial.flush.call_count)
         self.assert_num_signals_notified(1)
         self.assertDictEqual(self.last_notified['default'][0].to_dict(),
                              {

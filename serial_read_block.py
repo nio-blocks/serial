@@ -18,11 +18,11 @@ class SerialRead(Block):
 
     def __init__(self):
         super().__init__()
-        self.ser = None
+        self._serial = None
 
     def configure(self, context):
         super().configure(context)
-        self.ser = serial.Serial(
+        self._serial = serial.Serial(
             self.port, self.baudrate, timeout=self.timeout)
 
     def process_signals(self, signals, input_id='default'):
@@ -31,5 +31,5 @@ class SerialRead(Block):
         self.notify_signals(signals, output_id='default')
 
     def _read(self, signal):
-        read = self.ser.read(self.num_bytes)
+        read = self._serial.read(self.num_bytes)
         signal.serial_read = read

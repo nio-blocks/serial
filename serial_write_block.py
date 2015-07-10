@@ -18,11 +18,11 @@ class SerialWrite(Block):
 
     def __init__(self):
         super().__init__()
-        self.ser = None
+        self._serial = None
 
     def configure(self, context):
         super().configure(context)
-        self.ser = serial.Serial(self.port, self.baudrate)
+        self._serial = serial.Serial(self.port, self.baudrate)
 
     def process_signals(self, signals, input_id='default'):
         for signal in signals:
@@ -37,8 +37,8 @@ class SerialWrite(Block):
             self._logger.exception('Failed to evaluate write_data')
         if data:
             try:
-                self.ser.write(data)
+                self._serial.write(data)
             except serial.SerialTimeoutException:
                 self._logger.error('Failed writing to serial port')
             finally:
-                self.ser.flush()
+                self._serial.flush()
