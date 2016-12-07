@@ -1,11 +1,11 @@
 import serial
-from nio.common.block.base import Block
-from nio.common.discovery import Discoverable, DiscoverableType
-from nio.metadata.properties import VersionProperty, StringProperty, \
+from nio.block.base import Block
+from nio.util.discovery import discoverable
+from nio.properties import VersionProperty, StringProperty, \
     IntProperty
 
 
-@Discoverable(DiscoverableType.block)
+@discoverable
 class SerialRead(Block):
 
     """ Read from a serial port """
@@ -23,13 +23,13 @@ class SerialRead(Block):
     def configure(self, context):
         super().configure(context)
         self._serial = serial.Serial(
-            self.port, self.baudrate, timeout=self.timeout)
+            self.port(), self.baudrate(), timeout=self.timeout())
 
-    def process_signals(self, signals, input_id='default'):
+    def process_signals(self, signals):
         for signal in signals:
             self._read(signal)
-        self.notify_signals(signals, output_id='default')
+        self.notify_signals(signals)
 
     def _read(self, signal):
-        read = self._serial.read(self.num_bytes)
+        read = self._serial.read(self.num_bytes())
         signal.serial_read = read
