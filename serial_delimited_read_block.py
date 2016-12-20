@@ -11,7 +11,7 @@ class SerialDelimitedRead(Block):
     version = VersionProperty('0.1.0')
     delim1 = Property(title='Delimiter 1, Hex', default='0D')
     delim2 = Property(title='Delimiter 2, Hex (optional)', default='')
-    address = Property(title='Address', default='/dev/ttyUSB0')
+    port = Property(title='Port', default='/dev/ttyUSB0')
     baud = IntProperty(title='Baud', default=115200)
 
     def __init__(self):
@@ -24,7 +24,7 @@ class SerialDelimitedRead(Block):
     def start(self):
         super().start()
         self._eol = bytes.fromhex(self.delim1()) + bytes.fromhex(self.delim2())
-        self._com = serial.Serial(self.address(), self.baud())
+        self._com = serial.Serial(self.port(), self.baud())
         # Read some large amount of bytes to clear the buffer
         self.logger.debug('flush')
         self._com.timeout = 0.15
@@ -59,6 +59,7 @@ class SerialDelimitedRead(Block):
                     self.notify_signals(signals)
                 except:
                     self.logger.exception('error preparing signal')
+                    self.notify_signals(signals)
             else:
                 self.logger.debug('did not read a valid line: {}'.format(line))
             try:
