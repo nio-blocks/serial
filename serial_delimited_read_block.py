@@ -12,7 +12,7 @@ class SerialDelimitedRead(Block):
     delim1 = Property(title='Delimiter 1, Hex', default='0D')
     delim2 = Property(title='Delimiter 2, Hex (optional)', default='')
     port = Property(title='Port', default='/dev/ttyUSB0')
-    baud = IntProperty(title='Baud', default=115200)
+    baud = IntProperty(title='Baud Rate', default=115200)
 
     def __init__(self):
         super().__init__()
