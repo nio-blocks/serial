@@ -75,7 +75,6 @@ class SerialDelimitedRead(Block):
         return_value = b''
         latest_byte = b''
         while return_value[-len(self._eol):] != self._eol and not self._kill:
-            # latest_byte = self._com.read(1)
             try:
                 latest_byte = self._com.read(1)
             except:
