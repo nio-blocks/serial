@@ -26,7 +26,7 @@ Any list of signals.
 
 Output
 ---------
-Same list of signals as input with new attribute *serial_read*.
+Same list of signals as input with new attribute `serial_read`.
 
 -------------------------------------------------------------------------------
 
