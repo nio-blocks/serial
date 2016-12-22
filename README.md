@@ -72,7 +72,7 @@ Properties
 -   Port (str): Serial port to read from
 -   Baud Rate (int): Baud rate of serial port
 -   Delimiter 1 (str): Hex code of first delimiter, default `0D`
--   Delimiter 2 (str): Hex code of second delimiter, unused if blank
+-   Delimiter 2 (str): Hex code of optional second delimiter, unused if blank
 
 Dependencies
 ----------------
