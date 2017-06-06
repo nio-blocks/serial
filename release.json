@@ -1,0 +1,17 @@
+{
+  "nio/SerialRead": {
+    "Version": "1.0.0",
+    "Reference": "github.com/nio-blocks/serial.git@v1.0.0",
+    "Language": "Python"
+  },
+  "nio/SerialWrite": {
+    "Version": "1.0.0",
+    "Reference": "github.com/nio-blocks/serial.git@v1.0.0",
+    "Language": "Python"
+  },
+  "nio/SerialDelimitedRead": {
+    "Version": "1.0.0",
+    "Reference": "github.com/nio-blocks/serial.git@v1.0.0",
+    "Language": "Python"
+  }
+}
