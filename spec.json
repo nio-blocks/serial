@@ -1,85 +1,88 @@
 {
-  "nio/SerialRead": {
-    "Properties": {
-      "Timeout": {
-        "description": "Read timeout in seconds",
-        "type": "int"
-      },
-      "Baud Rate": {
-        "description": "Baud rate of serial port",
-        "type": "int"
-      },
-      "Number of Bytes to Read": {
-        "description": "Number of bytes to read",
-        "type": "int"
-      },
-      "Port": {
-        "description": "Serial port to read from",
-        "type": "string"
-      }
+    "nio/SerialWrite": {
+        "Properties": {
+            "Port": {
+                "type": "string",
+                "description": "Serial port to read from"
+            },
+            "Baud Rate": {
+                "type": "int",
+                "description": "Baud rate of serial port"
+            },
+            "Data to Write": {
+                "type": "expression",
+                "description": "Data to write to serial port"
+            }
+        },
+        "Input": {
+            "Description": "Any list of signals."
+        },
+        "Description": "Write to a serial port",
+        "Output": {
+            "Description": "Same list of signals as input."
+        },
+        "Category": "Hardware",
+        "Version": "1.0.0",
+        "Commands": {}
     },
-    "Version": "1.0.0",
-    "Output": "Same list of signals as input with new attribute `serial_read`.",
-    "Description": "Read from a serial port",
-    "Category": "Hardware",
-    "Commands": {},
-    "Dependencies": [
-      "-   [pyserial](https://pypi.python.org/pypi/pyserial)"
-    ],
-    "Input": "Any list of signals."
-  },
-  "nio/SerialWrite": {
-    "Properties": {
-      "Baud Rate": {
-        "description": "Baud rate of serial port",
-        "type": "int"
-      },
-      "Data to Write": {
-        "description": "Data to write to serial port",
-        "type": "expression"
-      },
-      "Port": {
-        "description": "Serial port to read from",
-        "type": "string"
-      }
+    "nio/SerialRead": {
+        "Properties": {
+            "Port": {
+                "type": "string",
+                "description": "Serial port to read from"
+            },
+            "Baud Rate": {
+                "type": "int",
+                "description": "Baud rate of serial port"
+            },
+            "Timeout": {
+                "type": "int",
+                "description": "Read timeout in seconds"
+            },
+            "Number of Bytes to Read": {
+                "type": "int",
+                "description": "Number of bytes to read"
+            }
+        },
+        "Input": {
+            "Description": "Any list of signals."
+        },
+        "Description": "Read from a serial port",
+        "Output": {
+            "Description": "Same list of signals as input with new attribute `serial_read`."
+        },
+        "Category": "Hardware",
+        "Version": "1.0.0",
+        "Commands": {}
     },
-    "Version": "1.0.0",
-    "Output": "Same list of signals as input.",
-    "Category": "Hardware",
-    "Description": "Write to a serial port",
-    "Commands": {},
-    "Dependencies": [
-      "-   [pyserial](https://pypi.python.org/pypi/pyserial)"
-    ],
-    "Input": "Any list of signals."
-  },
-  "nio/SerialDelimitedRead": {
-    "Properties": {
-      "Delimiter 1": {
-        "description": "Hex code of first delimiter, default `0D`",
-        "type": "string"
-      },
-      "Baud Rate": {
-        "description": "Baud rate of serial port",
-        "type": "int"
-      },
-      "Port": {
-        "description": "Serial port to read from",
-        "type": "string"
-      },
-      "Delimiter 2": {
-        "description": "Hex code of optional second delimiter, unused if blank",
-        "type": "string"
-      }
-    },
-    "Version": "1.0.0",
-    "Output": "For each line read, terminated by delimiter(s), a signal is notified with the\nattribute `serial_read` and the bytes read.",
-    "Category": "Hardware",
-    "Description": "Read from serial port until delimiter(s) found",
-    "Commands": {},
-    "Dependencies": [
-      "-   [pyserial](https://pypi.python.org/pypi/pyserial)"
-    ],
-    "Input": "None"
-  }
+    "nio/SerialDelimitedRead": {
+        "Properties": {
+            "Port": {
+                "type": "string",
+                "description": "Serial port to read from"
+            },
+            "Delimiter 2": {
+                "type": "string",
+                "description": "Hex code of optional second delimiter, unused if blank"
+            },
+            "Baud Rate": {
+                "type": "int",
+                "description": "Baud rate of serial port"
+            },
+            "Delimiter 1": {
+                "type": "string",
+                "description": "Hex code of first delimiter, default `0D`"
+            }
+        },
+        "Input": {
+            "Description": "None"
+        },
+        "Description": "Read from serial port until delimiter(s) found",
+        "Output": {
+            "Description": "For each line read, terminated by delimiter(s), a signal is notified with the\nattribute `serial_read` and the bytes read."
+        },
+        "Category": "Hardware",
+        "Version": "1.0.0",
+        "Commands": {}
+    }
 }
