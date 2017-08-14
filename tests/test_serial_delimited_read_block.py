@@ -1,10 +1,14 @@
 from threading import Event
 from unittest.mock import patch
+
 from nio.block.terminals import DEFAULT_TERMINAL
 from nio.testing.block_test_case import NIOBlockTestCase
+from nio.util.discovery import not_discoverable
+
 from ..serial_delimited_read_block import SerialDelimitedRead
 
 
+@not_discoverable
 class ReadEvent(SerialDelimitedRead):
 
     def __init__(self, event):
@@ -28,7 +32,7 @@ class TestSerialDelimitedReadBlock(NIOBlockTestCase):
         with patch('serial.Serial'):
             blk.start()
         blk._com.read.side_effect = [
-            b'l', b'l', b'o', b'\r', \
+            b'l', b'l', b'o', b'\r',
             b'h', b'e', b'l', b'l', b'o', b'\r'
         ]
         # wait for notify_signals
@@ -51,7 +55,7 @@ class TestSerialDelimitedReadBlock(NIOBlockTestCase):
         with patch('serial.Serial'):
             blk.start()
         blk._com.read.side_effect = [
-            b'l', b'l', b'o', b'\r', b'\n', \
+            b'l', b'l', b'o', b'\r', b'\n',
             b'h', b'e', b'l', b'l', b'o', b'\r', b'\n'
         ]
         # wait for notify_signals
@@ -74,7 +78,7 @@ class TestSerialDelimitedReadBlock(NIOBlockTestCase):
         with patch('serial.Serial'):
             blk.start()
         blk._com.read.side_effect = [
-            b'l', b'l', b'o', b'\r', \
+            b'l', b'l', b'o', b'\r',
             b'h', b'e', b'l', b'l', b'o'
         ]
         # wait for notify_signals
@@ -92,11 +96,10 @@ class TestSerialDelimitedReadBlock(NIOBlockTestCase):
         with patch('serial.Serial'):
             blk.start()
         blk._com.read.side_effect = [
-            b'l', b'l', b'o', b'\r', b'\n', \
+            b'l', b'l', b'o', b'\r', b'\n',
             b'h', b'e', b'l', b'l', b'o', b'\r'
         ]
         # wait for notify_signals
         e.wait(1.5)
         blk.stop()
         self.assert_num_signals_notified(0, blk)
-        

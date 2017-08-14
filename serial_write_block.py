@@ -1,11 +1,10 @@
 import serial
+
 from nio.block.base import Block
-from nio.util.discovery import discoverable
 from nio.properties import VersionProperty, StringProperty, \
     IntProperty, Property
 
 
-@discoverable
 class SerialWrite(Block):
 
     """ Write to  a serial port """
@@ -14,7 +13,7 @@ class SerialWrite(Block):
     port = StringProperty(title='Port', default='/dev/ttyS0')
     baudrate = IntProperty(title='Baud Rate', default=9600)
     write_data = Property(title='Data to Write',
-                                     default='{{ $data }}')
+                          default='{{ $data }}')
 
     def __init__(self):
         super().__init__()

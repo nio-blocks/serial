@@ -1,6 +1,7 @@
 import serial
 from threading import Thread
 import time
+
 from nio.block.base import Block
 from nio.signal.base import Signal
 from nio.properties import Property, IntProperty, VersionProperty
@@ -28,7 +29,7 @@ class SerialDelimitedRead(Block):
         # Read some large amount of bytes to clear the buffer
         self.logger.debug('flush')
         self._com.timeout = 0.15
-        self._com.read(100) # TODO: properly flush buffer at start
+        self._com.read(100)  # TODO: properly flush buffer at start
         self._com.timeout = self._timeout
         self.logger.debug('done with flush')
         # Read from com port in new thread

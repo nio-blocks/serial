@@ -1,11 +1,10 @@
 import serial
+
 from nio.block.base import Block
-from nio.util.discovery import discoverable
 from nio.properties import VersionProperty, StringProperty, \
     IntProperty
 
 
-@discoverable
 class SerialRead(Block):
 
     """ Read from a serial port """
