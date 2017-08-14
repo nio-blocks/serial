@@ -1,34 +1,61 @@
+SerialDelimitedRead
+===================
+
+For each line read, terminated by delimiter(s), a signal is notified with the attribute `serial_read` and the bytes read.
+
+Properties
+----------
+- **baud**: Baud rate of the serial port
+- **delim1**: First delimiter
+- **delim2**: Optional second delimiter
+- **port**: Serial port to read from
+
+Inputs
+------
+
+Outputs
+-------
+
+For each line read, terminated by delimiter(s), a signal is notified with the
+attribute `serial_read` and the bytes read.
+
+Commands
+--------
+
+Dependencies
+------------
+-   [pyserial](https://pypi.python.org/pypi/pyserial)
+
+
 SerialRead
 ==========
 
 Read from a serial port
 
 Properties
---------------
+----------
+- **baudrate**: Baud rate of the serial port
+- **num_bytes**: Number of bytes to read from the serial port
+- **port**: Serial port to read from
+- **timeout**: Read timeout in seconds
 
--   Port (type:string): Serial port to read from
--   Baud Rate (type:int): Baud rate of serial port
--   Timeout (type:int): Read timeout in seconds
--   Number of Bytes to Read (type:int): Number of bytes to read
+Inputs
+------
 
-Dependencies
-----------------
-
--   [pyserial](https://pypi.python.org/pypi/pyserial)
-
-Commands
-----------------
-None
-
-Input
--------
 Any list of signals.
 
-Output
----------
-Same list of signals as input with new attribute `serial_read`.
+Outputs
+-------
 
-***
+For each input signal, a signal notifies with the attribute `serial_read` and the bytes read
+
+Commands
+--------
+
+Dependencies
+------------
+-   [pyserial](https://pypi.python.org/pypi/pyserial)
+
 
 SerialWrite
 ===========
@@ -36,58 +63,24 @@ SerialWrite
 Write to a serial port
 
 Properties
---------------
+----------
+- **baudrate**: Baud rate of the serial port
+- **port**: Serial port to write to
+- **write_data**: Data to write
 
--   Port (type:string): Serial port to read from
--   Baud Rate (type:int): Baud rate of serial port
--   Data to Write (type:expression): Data to write to serial port
+Inputs
+------
 
-Dependencies
-----------------
+Any list of signals
 
--   [pyserial](https://pypi.python.org/pypi/pyserial)
-
-Commands
-----------------
-None
-
-Input
+Outputs
 -------
-Any list of signals.
 
-Output
----------
 Same list of signals as input.
 
-***
-
-SerialDelimitedRead
-===========
-
-Read from serial port until delimiter(s) found
-
-Properties
---------------
-
--   Port (type:string): Serial port to read from
--   Baud Rate (type:int): Baud rate of serial port
--   Delimiter 1 (type:string): Hex code of first delimiter, default `0D`
--   Delimiter 2 (type:string): Hex code of optional second delimiter, unused if blank
+Commands
+--------
 
 Dependencies
-----------------
-
+------------
 -   [pyserial](https://pypi.python.org/pypi/pyserial)
-
-Commands
-----------------
-None
-
-Input
--------
-None
-
-Output
----------
-For each line read, terminated by delimiter(s), a signal is notified with the 
-attribute `serial_read` and the bytes read.
