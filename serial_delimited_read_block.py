@@ -2,12 +2,12 @@ import serial
 from threading import Thread
 import time
 
-from nio.block.base import Block
+from nio import GeneratorBlock
 from nio.signal.base import Signal
 from nio.properties import Property, IntProperty, VersionProperty
 
 
-class SerialDelimitedRead(Block):
+class SerialDelimitedRead(GeneratorBlock):
 
     version = VersionProperty('0.1.0')
     delim1 = Property(title='Delimiter 1, Hex', default='0D')
