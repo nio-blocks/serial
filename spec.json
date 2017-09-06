@@ -2,6 +2,9 @@
   "nio/SerialDelimitedRead": {
     "version": "0.1.0",
     "description": "For each line read, terminated by delimiter(s), a signal is notified with the attribute `serial_read` and the bytes read.",
+    "categories": [
+      "Hardware"
+    ],
     "properties": {
       "baud": {
         "title": "Baud Rate",
@@ -39,6 +42,9 @@
   "nio/SerialRead": {
     "version": "0.1.0",
     "description": "Read from a serial port",
+    "categories": [
+      "Hardware"
+    ],
     "properties": {
       "baudrate": {
         "title": "Baud Rate",
@@ -80,6 +86,9 @@
   "nio/SerialWrite": {
     "version": "0.1.0",
     "description": "Write to a serial port",
+    "categories": [
+      "Hardware"
+    ],
     "properties": {
       "baudrate": {
         "title": "Baud Rate",
