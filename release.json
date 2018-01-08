@@ -12,6 +12,6 @@
   "nio/SerialWrite": {
     "language": "Python",
     "url": "git://github.com/nio-blocks/serial.git",
-    "version": "0.1.0"
+    "version": "0.1.1"
   }
 }

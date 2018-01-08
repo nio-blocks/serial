@@ -84,7 +84,7 @@
     "commands": {}
   },
   "nio/SerialWrite": {
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Write to a serial port.",
     "categories": [
       "Hardware"
