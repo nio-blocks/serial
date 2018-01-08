@@ -40,7 +40,7 @@
     "commands": {}
   },
   "nio/SerialRead": {
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Read from a serial port.",
     "categories": [
       "Hardware"

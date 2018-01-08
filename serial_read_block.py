@@ -9,7 +9,7 @@ class SerialRead(Block):
 
     """ Read from a serial port """
 
-    version = VersionProperty('0.1.0')
+    version = VersionProperty("0.1.1")
     port = StringProperty(title='Port', default='/dev/ttyS0')
     baudrate = IntProperty(title='Baud Rate', default=9600)
     timeout = IntProperty(title='Timeout', default=1)
