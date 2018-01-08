@@ -9,7 +9,7 @@ from nio.properties import Property, IntProperty, VersionProperty
 
 class SerialDelimitedRead(GeneratorBlock):
 
-    version = VersionProperty('0.1.0')
+    version = VersionProperty("0.1.1")
     delim1 = Property(title='Delimiter 1, Hex', default='0D')
     delim2 = Property(title='Delimiter 2, Hex (optional)', default='')
     port = Property(title='Port', default='/dev/ttyUSB0')

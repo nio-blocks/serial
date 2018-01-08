@@ -1,6 +1,6 @@
 {
   "nio/SerialDelimitedRead": {
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "For each line read, terminated by delimiter(s), a signal is notified with the attribute `serial_read` and the bytes read.",
     "categories": [
       "Hardware"
