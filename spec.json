@@ -64,6 +64,17 @@
         "description": "Serial port to read.",
         "default": "/dev/ttyS0"
       },
+      "retry_options": {
+        "title": "Retry Options",
+        "type": "ObjectType",
+        "description": "A selection of options to choose from when retrying to make a connection.",
+        "default": {
+          "strategy": "linear",
+          "max_retry": 5,
+          "multiplier": 1,
+          "indefinite": false
+        }
+      },
       "timeout": {
         "title": "Timeout",
         "type": "IntType",
@@ -81,7 +92,16 @@
         "description": "For each input signal, a signal notifies with the attribute `serial_read` and the bytes read."
       }
     },
-    "commands": {}
+    "commands": {
+      "disconnect_serial": {
+        "params": {},
+        "description": "Attempt to close the existing serial connection."
+      },
+      "reconnect_serial": {
+        "params": {},
+        "description": "Re-open the configured serial port."
+      }
+    }
   },
   "nio/SerialWrite": {
     "version": "0.1.1",
