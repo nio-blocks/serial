@@ -1,11 +1,15 @@
 import serial
 
 from nio.block.base import Block
+from nio.block.mixins import Retry
+from nio.command import command
 from nio.properties import VersionProperty, StringProperty, \
     IntProperty
 
 
-class SerialRead(Block):
+@command("reconnect_serial")
+@command("disconnect_serial")
+class SerialRead(Retry, Block):
 
     """ Read from a serial port """
 
@@ -21,8 +25,33 @@ class SerialRead(Block):
 
     def configure(self, context):
         super().configure(context)
-        self._serial = serial.Serial(
-            self.port(), self.baudrate(), timeout=self.timeout())
+        self.reconnect_serial()
+
+    def reconnect_serial(self):
+        self.disconnect_serial()
+        port = self.port()
+        baud = self.baudrate()
+        self.logger.info("Connecting to serial port {}, baud: {}".format(
+            port, baud))
+        self._serial = serial.Serial(port, baud, timeout=self.timeout())
+        # Return for the command
+        return {"status": "connected"}
+
+    def disconnect_serial(self):
+        """ Attempt to close the existing serial connection, if we can"""
+        if self._serial:
+            try:
+                self.logger.info("Closing serial connection")
+                self._serial.close()
+            except Exception:
+                self.logger.info("Error closing serial connection, continuing")
+                pass
+        # Return for the command
+        return {"status": "disconnected"}
+
+    def stop(self):
+        self.disconnect_serial()
+        super().stop()
 
     def process_signals(self, signals):
         for signal in signals:
@@ -30,5 +59,11 @@ class SerialRead(Block):
         self.notify_signals(signals)
 
     def _read(self, signal):
-        read = self._serial.read(self.num_bytes())
+        num_bytes = self.num_bytes()
+        self.logger.debug("Reading {} bytes".format(num_bytes))
+        read = self.execute_with_retry(self._serial.read, num_bytes)
         signal.serial_read = read
+
+    def before_retry(self, *args, **kwargs):
+        """ Reconnect our serial connection before retrying """
+        self.reconnect_serial()
