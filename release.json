@@ -7,7 +7,7 @@
   "nio/SerialRead": {
     "language": "Python",
     "url": "git://github.com/nio-blocks/serial.git",
-    "version": "0.1.1"
+    "version": "0.1.2"
   },
   "nio/SerialWrite": {
     "language": "Python",
