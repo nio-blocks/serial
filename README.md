@@ -25,6 +25,8 @@ Dependencies
 ------------
 -   [pyserial](https://pypi.python.org/pypi/pyserial)
 
+***
+
 SerialRead
 ==========
 Read from a serial port.
@@ -34,6 +36,7 @@ Properties
 - **baudrate**: Baud rate of serial port.
 - **num_bytes**: Number of bytes to read from the serial port.
 - **port**: Serial port to read.
+- **retry_options**: A selection of options to choose from when retrying to make a connection.
 - **timeout**: Read timeout in seconds.
 
 Inputs
@@ -46,11 +49,14 @@ Outputs
 
 Commands
 --------
-None
+- **disconnect_serial**: Attempt to close the existing serial connection.
+- **reconnect_serial**: Re-open the configured serial port.
 
 Dependencies
 ------------
 -   [pyserial](https://pypi.python.org/pypi/pyserial)
+
+***
 
 SerialWrite
 ===========
