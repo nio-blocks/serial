@@ -37,7 +37,7 @@ Properties
 - **num_bytes**: Number of bytes to read from the serial port.
 - **port**: Serial port to read.
 - **retry_options**: A selection of options to choose from when retrying to make a connection.
-- **timeout**: Read timeout in seconds.
+- **timeout**: Serial port timeout, in seconds.
 
 Inputs
 ------
@@ -66,6 +66,8 @@ Properties
 ----------
 - **baudrate**: Baud rate of serial port.
 - **port**: Serial port to write.
+- **retry_options**: A selection of options to choose from when retrying to make a connection.
+- **timeout**: Serial port timeout, in seconds.
 - **write_data**: Data to write.
 
 Inputs
@@ -78,7 +80,8 @@ Outputs
 
 Commands
 --------
-None
+- **disconnect_serial**: Attempt to close the existing serial connection.
+- **reconnect_serial**: Re-open the configured serial port.
 
 Dependencies
 ------------

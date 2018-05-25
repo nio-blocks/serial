@@ -40,7 +40,7 @@
     "commands": {}
   },
   "nio/SerialRead": {
-    "version": "0.1.2",
+    "version": "0.2.0",
     "description": "Read from a serial port.",
     "categories": [
       "Hardware"
@@ -78,7 +78,7 @@
       "timeout": {
         "title": "Timeout",
         "type": "IntType",
-        "description": "Read timeout in seconds.",
+        "description": "Serial port timeout, in seconds.",
         "default": 1
       }
     },
@@ -104,7 +104,7 @@
     }
   },
   "nio/SerialWrite": {
-    "version": "0.1.1",
+    "version": "0.2.0",
     "description": "Write to a serial port.",
     "categories": [
       "Hardware"
@@ -121,6 +121,23 @@
         "type": "StringType",
         "description": "Serial port to write.",
         "default": "/dev/ttyS0"
+      },
+      "retry_options": {
+        "title": "Retry Options",
+        "type": "ObjectType",
+        "description": "A selection of options to choose from when retrying to make a connection.",
+        "default": {
+          "strategy": "linear",
+          "max_retry": 5,
+          "multiplier": 1,
+          "indefinite": false
+        }
+      },
+      "timeout": {
+        "title": "Timeout",
+        "type": "IntType",
+        "description": "Serial port timeout, in seconds.",
+        "default": 1
       },
       "write_data": {
         "title": "Data to Write",
@@ -139,6 +156,15 @@
         "description": "The same list of signals."
       }
     },
-    "commands": {}
+    "commands": {
+      "disconnect_serial": {
+        "params": {},
+        "description": "Attempt to close the existing serial connection."
+      },
+      "reconnect_serial": {
+        "params": {},
+        "description": "Re-open the configured serial port."
+      }
+    }
   }
 }
